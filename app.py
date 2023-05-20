@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import pymongo
 
 app = Flask(__name__)
@@ -10,7 +10,7 @@ collection = db['codes']
 @app.route('/code', methods=['GET'])
 def get_code():
     latest_code = collection.find_one(sort=[("date", pymongo.DESCENDING)])
-    return jsonify({'code': latest_code['code']})
-
+    return render_template('index.html',code=latest_code['code'])
 if __name__ == '__main__':
     app.run()
+
