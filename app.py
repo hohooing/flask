@@ -12,5 +12,5 @@ def get_code():
     latest_code = collection.find_one(sort=[("date", pymongo.DESCENDING)])
     return render_template('index.html',code=latest_code['code'])
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0', port=5000, debug=True)
 
